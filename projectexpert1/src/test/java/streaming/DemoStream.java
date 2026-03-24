@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class DemoStream {
 
@@ -103,4 +104,18 @@ public class DemoStream {
                 .filter(l -> l > 5)
                 .sum();
     }
+
+    @Test
+    void demoStreamOf(){
+        Stream.of(
+                "Amiens", "Pau", "Montauban",
+                "Toulouse", "Paris", "annecy",
+                "angoulême", "Arras"
+        )
+                .filter(city -> city.length() > 5)
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+        ;
+    }
+
 }
