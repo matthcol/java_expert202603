@@ -17,6 +17,7 @@ import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -192,4 +193,19 @@ public class DemoStreamCitiesCsv {
     }
 
     // TODO: trouver les villes sans coordonnes GPS
+    @Test
+    void demoCitiesWithoutCoords(){
+        Predicate<CityFr> noLongitude = city -> Objects.isNull(city.getLongitudeCentroid());
+        Predicate<CityFr> noLatitude = city -> Objects.isNull(city.getLatitudeCentroid());
+        cities.stream()
+                .filter(noLongitude.or(noLatitude))
+                .forEach(cityFr -> System.out.println(
+                        cityFr.getName()
+                        + " lon : "
+                        + cityFr.getLongitudeCentroid()
+                        + ", lat : "
+                        + cityFr.getLatitudeCentroid()
+                ));
+
+    }
 }
