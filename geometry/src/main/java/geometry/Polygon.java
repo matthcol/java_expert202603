@@ -14,7 +14,7 @@ import java.util.List;
 public class Polygon extends Form implements Mesurable2D{
     private List<Point> vertices = new ArrayList<>();
 
-    public Polygon(String name, Collection<Point> vertices) {
+    public Polygon(String name, Collection<? extends Point> vertices) {
         super(name);
         this.vertices.addAll(vertices);
     }
