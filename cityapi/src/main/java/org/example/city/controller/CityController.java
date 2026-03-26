@@ -1,7 +1,7 @@
 package org.example.city.controller;
 
 import jakarta.validation.Valid;
-import org.example.city.dto.City;
+import org.example.city.dto.CityDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +14,13 @@ import java.util.List;
 public class CityController {
 
     @PostMapping
-    public City addCity(@Valid City city){
+    public CityDto addCity(@Valid CityDto city){
         // TODO : persist data
         return city;
     }
 
     @GetMapping("search/byDept/{codeDept}")
-    public List<City> searchByDept(String codeDept){
+    public List<CityDto> searchByDept(String codeDept){
         return List.of();
     }
 }

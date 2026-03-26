@@ -14,7 +14,7 @@ import org.example.city.validation.MinDouble;
 @Getter
 @Setter
 @ToString(of={"name", "department", "population"})
-public class City {
+public class CityDto {
     @NotBlank
     private String name;
 
