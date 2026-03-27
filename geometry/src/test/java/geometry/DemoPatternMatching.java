@@ -6,9 +6,9 @@ import util.DoublePair;
 import util.StreamUtil;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class DemoPatternMatching {
 
@@ -235,5 +235,54 @@ public class DemoPatternMatching {
         // sealed class, records
 
     }
+
+    @Test
+    void demoMapCategory(){
+        EnumMap<PolygonCategory, List<Polygon>> result =
+                StreamUtil.filterByType(forms.stream(), Polygon.class)
+                .collect(Collectors.groupingBy(
+                        Polygon::getPolygonCategory,
+                        () -> new EnumMap<>(PolygonCategory.class),
+                        Collectors.toList()
+                ));
+
+        for (var entry: result.entrySet()){
+            System.out.println("* Categorie : " + entry.getKey());
+            for (var polygon: entry.getValue()){
+                System.out.println("\t - " + polygon);
+                System.out.println("\t\t NB: cat = " + polygon.getPolygonCategory());
+
+            }
+        }
+        System.out.println();
+
+        result.forEach(
+                (category, polygons) -> {
+                    System.out.println("* Categorie : " + category);
+                    polygons.forEach(polygon -> {
+                        System.out.println("\t - " + polygon);
+                        System.out.println("\t\t NB: cat = " + polygon.getPolygonCategory());
+                    });
+                }
+        );
+    }
+
+
+    @Test
+    void demoParallStream(){
+        Collector<String, ?, TreeSet<String>> collector = Collectors.toCollection(TreeSet::new);
+        Collector<Mesurable2D, ?, DoubleSummaryStatistics> collector2 =
+                Collectors.summarizingDouble(Mesurable2D::surface);
+
+        var names = forms.parallelStream()
+                .map(Form::getName)
+                .collect(collector);
+
+        System.out.println(names);
+        System.out.println(collector.characteristics()); // IDENTITY_FINISH
+        System.out.println(collector2.characteristics()); // IDENTITY_FINISH
+    }
+
+
 
 }

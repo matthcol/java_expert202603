@@ -12,11 +12,16 @@ import java.util.List;
 @Getter
 @Setter
 public final class Polygon extends Form implements Mesurable2D{
+
     private List<Point> vertices = new ArrayList<>();
+    private PolygonCategory polygonCategory;
 
     public Polygon(String name, Collection<? extends Point> vertices) {
         super(name);
         this.vertices.addAll(vertices);
+        // Random category:
+        var allCat = PolygonCategory.values();
+        this.polygonCategory = allCat[(int)(Math.random()*allCat.length)];
     }
 
     public Polygon(String name, Point... vertices){
