@@ -46,4 +46,10 @@ public class DemoCityRepository {
         );
         cityRepository.flush(); // SQL : UPDATE
     }
+
+    @Test
+    void demoSelectDto(){
+        var stats = cityRepository.statCityByDepartment();
+        stats.forEach(System.out::println);
+    }
 }

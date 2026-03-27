@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Circle extends Form implements Mesurable2D{
+public final class Circle extends Form implements Mesurable2D{
     private double radius;
     private Point center;
 

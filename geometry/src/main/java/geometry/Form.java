@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public abstract class Form {
+public abstract sealed class Form permits Point, Circle, Polygon, Segment{
 
     private String name;
 

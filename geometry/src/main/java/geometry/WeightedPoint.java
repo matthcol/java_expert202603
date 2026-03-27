@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class WeightedPoint extends Point{
+public final class WeightedPoint extends Point{
     private double weight;
 
     public WeightedPoint(String name, double x, double y, double weight) {

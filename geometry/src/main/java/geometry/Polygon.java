@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Polygon extends Form implements Mesurable2D{
+public final class Polygon extends Form implements Mesurable2D{
     private List<Point> vertices = new ArrayList<>();
 
     public Polygon(String name, Collection<? extends Point> vertices) {

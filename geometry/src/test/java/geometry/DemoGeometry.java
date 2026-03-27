@@ -86,8 +86,8 @@ public class DemoGeometry {
     void demoIsInstanceInterface(){
         Point ptA = new Point("A", 1.0, 2.0);
         Circle c = new Circle("C", 12.5, ptA);
-        Assertions.assertFalse(ptA instanceof Mesurable2D); // Warning : always False
-        Assertions.assertFalse(ptA instanceof Serializable); // Warning : always False
+//        Assertions.assertFalse(ptA instanceof Mesurable2D); // Warning : always False or Error if sealed class
+//        Assertions.assertFalse(ptA instanceof Serializable); // Warning : always False or Error if sealed class
         List<Form> forms = List.of(ptA, c);
         forms.stream()
                 .filter(f -> f instanceof  Mesurable2D)

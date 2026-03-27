@@ -1,4 +1,5 @@
 package geometry;
 
-public interface Form {
+public sealed interface Form permits Point, Circle {
+    String name();
 }

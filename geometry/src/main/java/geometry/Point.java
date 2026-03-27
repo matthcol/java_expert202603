@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class Point extends Form{
+public sealed class Point extends Form permits WeightedPoint{
     private double x;
     private double y;
 
